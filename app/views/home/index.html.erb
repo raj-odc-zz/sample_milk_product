@@ -1,0 +1,37 @@
+<div class="row">
+  <h4><%= link_to "Add New Product", products_path %></h4>
+  <h4><%= link_to "Add Product Type", product_types_path %></h4>
+  <h4><%= link_to "Add Brand",  brands_path  %></h4>
+  <h4><%= link_to "Add Quantity Type",  quantity_types_path  %></h4>
+</div>
+<h1>Available Products</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <tr>
+    <td><strong>Product Name</strong></td><td>&nbsp;</td>
+    <td><strong>Quantity Present</strong></td>
+  </tr>
+    <% @products.each do |product| %>
+      <tr>
+        <%= product.inspect %>
+            <td><%= product.brand.name %> <%= product.product_type.name %><%= product.quantity_type.name %></td>
+            <td><%= product.item_count.to_i %></td>
+          </tr>
+        <td><%= link_to 'Show', product %></td>
+        <td><%= link_to 'Edit', edit_product_path(product) %></td>
+        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product', new_product_path %>
